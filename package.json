@@ -1,0 +1,16 @@
+{
+  "name": "nexus-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check:obsidian": "node --env-file=.env runtime/knowledge/check-connection.js",
+    "e2e:obsidian": "node --env-file=.env scripts/e2e-obsidian.mjs",
+    "bridge:obsidian": "node --env-file=.env scripts/start-mcp-bridge.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

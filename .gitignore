@@ -1,0 +1,18 @@
+.env
+.env.*
+!.env.example
+
+# Machine-local metadata and agent permissions.
+.DS_Store
+.claude/settings.local.json
+.obsidian/workspace.json
+
+# Installed Obsidian plugins are local dependencies. The REST plugin also
+# stores its API key and TLS private key inside this directory.
+.obsidian/plugins/
+
+# Extracted local CA cert (public, but regenerates whenever the plugin cert rotates)
+.obsidian-local-rest-api-ca.crt
+
+node_modules/
+coverage/
