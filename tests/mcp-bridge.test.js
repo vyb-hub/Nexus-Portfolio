@@ -16,7 +16,7 @@ function generateCa(dir, name) {
   const certPath = path.join(dir, `${name}-cert.pem`);
   execFileSync("openssl", ["ecparam", "-genkey", "-name", "prime256v1", "-noout", "-out", keyPath]);
   execFileSync("openssl", [
-    "req", "-x509", "-new", "-key", keyPath, "-days", "2",
+    "req", "-sha256", "-x509", "-new", "-key", keyPath, "-days", "2",
     "-out", certPath, "-subj", `/CN=Test CA ${name}`
   ]);
   return { keyPath, certPath };
@@ -31,7 +31,7 @@ function generateLeaf(dir, name, ca) {
   execFileSync("openssl", ["ecparam", "-genkey", "-name", "prime256v1", "-noout", "-out", keyPath]);
   execFileSync("openssl", ["req", "-new", "-key", keyPath, "-out", csrPath, "-subj", "/CN=127.0.0.1"]);
   execFileSync("openssl", [
-    "x509", "-req", "-in", csrPath, "-CA", ca.certPath, "-CAkey", ca.keyPath,
+    "x509", "-sha256", "-req", "-in", csrPath, "-CA", ca.certPath, "-CAkey", ca.keyPath,
     "-CAcreateserial", "-out", certPath, "-days", "2", "-extfile", extPath
   ]);
   return { keyPath, certPath };
